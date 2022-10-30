@@ -2,7 +2,7 @@
 Learn about Spring deeply 🎞🕶📽
 
 ### ⭐ 역할과 구현으로 구분하는 것이 무엇보다 중요하다.
-### SOLID 🖐👴
+### SOLID Principle🖐👴
 - 클린코드로 유명한 로버트 마틴이 좋은 객체 지향 설계의 5가지 원칙을 정리
 - SRP : 단일 책임 원칙(Single Responsibility Principle)
 - OCP : 개방-폐쇄 원칙(Open/Closed Principle)
