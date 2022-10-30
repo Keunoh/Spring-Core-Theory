@@ -72,7 +72,7 @@ Dependency Inversion Principle
    - 의존관계 주입에 초점을 맞추어 최근에는 주로 DI 컨테이너라 한다.
    - 또는 어셈블러, 오브젝트 팩토리 등으로 불리기도 한다.
 ---
-### Singleton Container and Pattern 🎲
+### Singleton Container and Pattern 🎲 🗃
 1. Singleton Container
    - 웹 애플리케이션 싱글톤
    - 스프링은 태생이 기업용 온라인 서비스 기술을 지원하기 위해 탄생했다.
