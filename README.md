@@ -168,6 +168,17 @@ Dependency Inversion Principle
       - 필드 대신에 자바에서 공유되지 않은, 지역변수, 파라미터, ThreadLocal등을 사용해야 한다.
       - 스프링 빈의 필드에 공유 값을 설정하면 정말 큰 장애가 발생할 수 있다.
 ---
+### 스프링 빈 설정 메타 정보 - Bean Definition
+- 스프링은 어떻게 이런 다양한 설정 형식을 지원하는 것일까? 그 중심에는 `Bean Definition`이라는 추상화가 있다.
+- 쉽게 이야기해서 *역할과 구현을 개념적으로 나눈 것*이다!
+  - XML을 읽어서 BeanDefinition을 만들면 된다.
+  - 자바 코드를 읽어서 BeanDefinition을 만들면 된다.
+  - 스프링 컨테이너는 자바 코드인지, XML인지 몰라도 된다. 오직 BeanDefinition만 알면 된다.
+- `BeanDefinition`을 빈 설정 메타정보라 한다.
+  - `@Bean`, `<bean>`당 각각 하나씩 메타 정보가 생성된다.
+- 스프링 컨테이너는 이 메타정보를 기반으로 스프링 빈을 생성한다.
+
+---
 ### Various Dependency Injection Ways 💉🧬
 스프링 라이프 사이클에서 스프링 빈을 등록하는 단계랑 스프링 의존관계를 주입하는 단계가 구분되어있다.
 - 생성자 주입
