@@ -1255,3 +1255,25 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
     - https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments
   - @Controller의 사용 가능한 응답 값 목록을 다음 공식 메뉴얼에서 확인할 수 있다.
     - https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-return-types
+
+### HTTP 요청 파라미터 - @RequestParam
+- @RequestParam : 파라미터 이름으로 바인딩
+  - @RequestParam의 name(value) 속성이 파라미터 이름으로 사용
+    - @RequestParam("username") String memberName -> request.getParameter("username")
+    - 기본값이 파라미터 필수(true)이다.
+  - 파라미터를 Map, MultiValueMap으로 조회할 수 있다.
+    - @RequestParam Map 
+      - Map(key=value)
+    - @RequestParam MultiValueMap
+      - MultiValueMap(key=[value1, value2, ...])
+  - 주의
+    - @RequestParam 애노테이션을 생략하면 스프링 MVC는 내부에서 required=false를 적용한다.
+    - 이렇게 애노테이션을 완전히 생략해도 되는데, 너무 없는 것도 약간 과하다는 주관적 생각이 있다. 
+    - @RequestParam이 있으면 명확하게 요청 파라미터에서 데이터를 읽는다는 것을 알 수 있다.
+    - /request-param?username=
+      - 파라미터 이름만 있고 값이 없는 경우 -> 빈문자로 통과
+    - 기본형(primitive)에 null 입력
+      - @RequestParam(required = false) int age
+        - null을 int에 입력하는 것은 불가능(500 예외 발생)
+        - 따라서 null을 받을 수 있는 Integer로 변경하거나, 또는 defaultValue 사용
+- @ResponseBody : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
