@@ -1226,3 +1226,32 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
   - 로그 레벨에 따라 개발 서버에서는 모든 로그를 출력하고, 운영서버에서는 출력하지 않는 등, 로그를 상황에 맞게 조절할 수 있다.
   - 시스템 아웃 콘솔에만 출력하는 것이 아니라, 파일이나 네트워크 등, 로그를 별도의 위치에 남길 수 있다. 특히 파일로 남길 때는 일별, 특정 용량에 따라 로그를 분할하는 것도 가능하다.
   - 성능도 일반 System.out보다 좋다. (내부 버퍼링, 멀티 쓰레드 등등) 그래스 실무에서는 꼭 로그를 사용해야 한다.
+
+### HTTP 요청 - 기본, 헤더 조회
+애노테이션 기반의 스프링 컨트롤러는 다양한 파라미터를 지원한다.
+이번 시간에는 HTTP 헤더 정보를 조회하는 방법을 알아보자.
+- HttpServletRequest
+- HttpServletResponse
+- HttpMethod : HTTP 메서드를 조회한다. org.springframework.http.HttpMethod
+- Locale : Locale 정보를 조회한다.
+- @RequestHeader MultiValueMap<String, String> headerMap
+  - 모든 HTTP 헤더를 MultiValueMap 형식으로 조회한다.
+- @RequestHeader("host") String host
+  - 특정 HTTP 헤더를 조회한다.
+  - 속성
+    - 필수 값 여부 : required
+    - 기본 값 속성 : defaultValue
+- @CookieValue(value = "myCookie", required = false) String cookie
+  - 특정 쿠키를 조회한다.
+  - 속성
+    - 필수 값 여부 : required
+    - 기본 값 : defaultValue
+- MultiValueMap
+  - Map과 유사한데, 하나의 키에 여러 값을 받을 수 있다.
+  - HTTP header, HTTP 쿼리 파라미터와 같이 하나의 키에 여러 값을 받을 때 사용한다.
+    - keyA=value1&keyA=value2
+- 참고
+  - @Controller의 사용가능한 파라미터 목록은 다음 공식 메뉴얼에서 확인할 수 있다.
+    - https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments
+  - @Controller의 사용 가능한 응답 값 목록을 다음 공식 메뉴얼에서 확인할 수 있다.
+    - https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-return-types
