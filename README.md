@@ -1277,3 +1277,35 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
         - null을 int에 입력하는 것은 불가능(500 예외 발생)
         - 따라서 null을 받을 수 있는 Integer로 변경하거나, 또는 defaultValue 사용
 - @ResponseBody : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
+- @ModelAttribute : 요청 파라미터의 값을 객체에 담아서 전달 받을 수 있다.
+  - HelloData 객체를 생성한다.
+  - 요청 파라미터의 이름으로 HelloData 객체의 프로퍼티를 찾는다. 그리고 해당 프로퍼티의 setter를 호출해서 파라미터의 값을 입력(바인딩) 한다.
+  - 예) 파라미터 이름이 username이면 setUsername() 메서드를 찾아서 호출하면서 값을 입력한다.
+
+### HTTP 요청 메시지 - 단순 텍스트
+- HTTP message body에 데이터를 직접 담아서 요청
+  - HTTP API에서 주로 사용, JSON, XML, TEXT
+  - 데이터 형식은 주로 JSON 사용
+  - POST, PUT, PATCH
+- 요청 파라미터와 다르게, HTTP 메시지 바디를 통해 데이터가 직접 넘어오는 경우는 @RequestParam, @ModelAttribute를 사용할 수 없다. (물론 HTML Form 형식으로 전달되는 경우는 요청 파라미터로 인정된다.)
+- HTTP 메시지 바디의 데이터 읽기
+  - HTTP 메시지 바디의 데이터를 InputStream을 사용해서 직접 읽을 수 있다. (방법1)
+  - InputStream, OutputStream 이용 (방법2)
+    - InputStream(Reader) : HTTP 요청 메시지 바디의 내용을 직접 조회
+    - OutputStream(Writer) : HTTP 응답 메시지의 바디에 직접 결과 출력
+  - HttpEntity 이용 (방법3)
+    - HttpEntity : HTTP header, body 정보를 편리하게 조회
+      - 메시지 바디 정보를 직접 조회
+      - 요청 파라미터를 조회하는 기능과 관계 없음!!! @RequestParam X, @ModelAttribute X
+    - HttpEtntiy는 응답에도 사용가능
+      - 메시지 바디 정보 직접 반환
+      - 헤더 정보 포함 가능
+  - @RequestBody (방법4)
+    - @RequestBody를 사용하면 HTTP 메시지 바디 정보를 편리하게 조회할 수 있다.
+    - 참고로 헤더 정보가 필요하다면 HttpEntity를 사용하거나 @RequestHeader를 사용하면 된다.
+    - 이렇게 메시지 바디를 직접 조회하는 기능은 요청 파라미터를 조회하는 @RequestParam, @ModelAttribute와는 전혀 관계가 없다!!!
+- 요청 파라미터 vs HTTP 메시지 바디
+  - 요청 파라미터를 조회하는 기능 : @RequestParam, @ModelAttribute
+  - HTTP 메시지 바디를 직접 조회하는 기능 : @RequestBody
+- @ResponseBody
+  - @ResponseBody를 사용하면 응답 결과를 HTTP 메시지 바디에 직접 담아서 전달할 수 있다.
