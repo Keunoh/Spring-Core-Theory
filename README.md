@@ -1309,3 +1309,20 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
   - HTTP 메시지 바디를 직접 조회하는 기능 : @RequestBody
 - @ResponseBody
   - @ResponseBody를 사용하면 응답 결과를 HTTP 메시지 바디에 직접 담아서 전달할 수 있다.
+
+### HTTP 요청 메시지 - JSON
+- HTTP 메시지 바디의 데이터 읽기
+  - HttpServletRequest를 직접 사용 (방법1)
+    - HTTP 메시지 바디에서 데이터를 읽어와서, 문자로 변환한다.
+    - 문자로 된 JSON 데이터를 Jackson 라이브러리인 objectMapper를 사용해서 자바 객체로 변환한다.
+  - @RequestBody 문자 반환 (방법2)
+    - HTTP 메시지에서 데이터를 꺼내고 messageBody에 저장한다.
+    - 문자로 된 JSON 데이터인 messageBody를 objectMapper를 통해서 자바 객체로 변환한다.
+  - @RequestBody 객체 반환 (방법3)
+    - @RequestBody HelloData data
+    - @RequestBody에 직접 만든 객체를 지정할 수 있다.
+  - HttpEntity, @RequestBody를 사용하면 HTTP 메시지 컨버터가 HTTP 메시지 바디의 내용을 우리가 원하는 문자나 객체 등으로 변환해준다.
+  - HTTP 메시지 컨버터는 문자뿐만 아니라 JSON도 객체로 변환해주는데, 우리가 방금 V2에서 했던 작업을 대신 처리해준다.
+  - @RequestBody는 생략 불가능
+    - 이 경우에 HelloData에 @RequestBody를 생략하면 @ModelAttribute가 적용되어버린다.
+    - 따라서 생략하면 HTTP 메시지 바디가 아니라 요청 파라미터를 처리하게 된다.
