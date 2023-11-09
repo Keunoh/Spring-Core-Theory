@@ -1332,3 +1332,4 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
     - Frame : HTTP/2 통신상의 제일 작은 정보의 단위이며, Header 혹은 Data 둘 중 하나
     - Message : HTTP1.1과 마찬가지로 요청 혹은 응답의 단위이며, 다수의 Frame으로 이루어짐
     - Stream : 클라이언트와 서버 사이에 맺어진 연결을 통해 양방향으로 주고받는 하나 혹은 복수개의 Message
+      - https://brunch.co.kr/@sangjinkang/3   
