@@ -1326,3 +1326,6 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
   - @RequestBody는 생략 불가능
     - 이 경우에 HelloData에 @RequestBody를 생략하면 @ModelAttribute가 적용되어버린다.
     - 따라서 생략하면 HTTP 메시지 바디가 아니라 요청 파라미터를 처리하게 된다.
+  - 참고
+    - 바이트 코드 : JVM 등의 가상 머신이 이해할 수 있는 언어(코드)
+    - 바이너리 코드 : 컴퓨터가 인식할 수 있는 0과 1로 구성된 이진코드   
