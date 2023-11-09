@@ -1352,3 +1352,31 @@ ControllerV3, ControllerV4는 완전히 다른 인터페이스이다. 따라서 
     - HTML이나 뷰 템플릿을 사용해도 HTTP 응답 메시지 바디에 HTML 데이터가 담겨서 전달된다.
     - 여기서 설명하는 내용은 정적 리소스나 뷰 템플릿을 거치지 않고 직접 HTTP 응답 메시지를 전달하는 경우를 말한다.
 
+### HTTP 메시지 컨버터
+뷰 템플릿으로 HTML을 생성해서 응답하는 것이 아니라, HTTP API처럼 JSON 데이터를 
+HTTP 메시지 바디에서 직접 읽거나 쓰는 경우 HTTP 메시지 컨버터를 사용하면 편리하다.
+![MESSAGE_CONVERTER](https://github.com/keunoh/spring-core-theory/assets/96904103/4b3cac58-45b4-4d71-ba6b-4a74ece4ae95)
+- @ResponseBody를 사용
+  - HTTP의 BODY에 문자 내용을 직접 반환
+  - viewResolver 대신에 HttpMessageConverter가 동작
+  - 기본 문자처리 : StringHttpMessageConverter
+  - 기본 객체처리 : MappingJackson2HttpMessageConverter
+  - byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있음
+- 스프링 MVC는 다음의 경우에 HTTP 메시지 컨버터를 적용한다.
+  - HTTP 요청 : @RequestBody, HttpEntity(RequestEntity)
+  - HTTP 응답 : @ResponseBody, HttpEntity(ResponseEntity)
+  - 스프링 부트는 다양한 메시지 컨버터를 제공하는데, 대상 클래스 타입과 미디어 타입 둘을 체크해서 사용여부를 결정한다.
+  - 만약 만족하지 않으면 다음 메시지 컨버터로 우선순위가 넘어간다.
+  - 몇 가지 주요한 메시지 컨버터
+    - ByteArrayHttpMessageConverter : byte[] 데이터를 처리한다.
+      - 클래스 타입 : byte[], 미디어타입: */*
+      - 요청 예) @RequestBody byte[] data
+      - 응답 예) @ResponseBody return byte[], 쓰기 미디어타입 : application/octet-stream
+    - StringHttpMessageConverter : String 문자로 데이터를 처리한다.
+      - 클래스 타입 : String, 미디어타입: */*
+      - 요청 예) @RequestBody String data
+      - 응답 예) @ResponseBody return "ok", 쓰기 미디어타입 : text/plain
+    - MappingJackson2HttpMessageConverter : application/json
+      - 클래스 타입 : 객체 또는 HashMap, 미디어타입: application/json 관련
+      - 요청 예) @RequestBody HelloData data
+      - 응답 예) @ResponseBody return helloData, 쓰기 미디어타입 : application/json 관련
