@@ -1380,3 +1380,26 @@ HTTP 메시지 바디에서 직접 읽거나 쓰는 경우 HTTP 메시지 컨버
       - 클래스 타입 : 객체 또는 HashMap, 미디어타입: application/json 관련
       - 요청 예) @RequestBody HelloData data
       - 응답 예) @ResponseBody return helloData, 쓰기 미디어타입 : application/json 관련
+
+### 요청 매핑 핸들러 어댑터 구조
+그렇다면 HTTP 메시지 컨버터는 스프링 MVC 어디쯤에서 사용되는 것일까?
+모든 비밀은 애노테이션 기반의 컨트롤러, 그러니까 @RequestMapping을 처리하는 핸들러 어댑터인
+RequestMappingHandlerAdapter(요청 매핑 핸들러 어댑터)에 있다.
+![Req_Map_HANDLER_ADAPTER](https://github.com/keunoh/spring-core-theory/assets/96904103/454a507a-44dc-4ef6-8f36-7ba3e971263b)
+- ArgumentResolver  
+생각해보면, 애노테이션 기반의 컨트롤러는 매우 다양한 파라미터를 사용할 수 있었다.
+HttpServletRequest, Model은 물론이고, @RequestParam, @ModelAttribute 같은 애노테이션
+그리고 @RequestBody, HttpEntity 같은 HTTP 메시지를 처리하는 부분까지 매우 큰 유연함을 보여주었다.
+이렇게 파라미터를 유연하게 처리할 수 있는 이유가 바로 ArgumentResolver 덕분이다.
+애노테이션 기반 컨트롤러를 처리하는 RequestMappingHandlerAdapter는 바로 이 ArgumentResolver를 호출해서
+컨트롤러(핸들러)가 필요로 하는 다양한 파라미터의 값(객체)을 생성한다.
+
+### HTTP 메시지 컨버터
+HTTP 메시지 컨버터는 어디쯤 있을까?
+HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요로 하는 파라미터의 값에 사용된다.
+![HTTP_MESSAGE_CONVERTER](https://github.com/keunoh/spring-core-theory/assets/96904103/395bfde0-80cb-474e-b4b9-fcb23203ea80)
+- 요청의 경우
+  - @RequestBody를 처리하는 ArgumentResolver가 있고, HttpEntity를 처리하는 ArgumentResolver가 있다.
+  - 이 ArgumentResolver들이 HTTP 메시지 컨버터를 사용해서 필요한 객체를 생성하는 것이다.
+- 응답의 경우
+  - @ResponseBody와 HttpEntity를 처리하는 ReturnValueHandler가 있다. 그리고 여기에서 HTTP 메시지 컨버터를 호출해서 응답 결과를 만든다.
