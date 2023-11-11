@@ -1428,3 +1428,8 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
 - 주의
   - "redirect:/basic/items/" + item.getId() redirect에서 + item.getId()처럼 URL에 변수를 더해서 사용하는 것은 URL 인코딩이 안되기 때문에 위험하다.
   - 다음에 설명하는 RedirectAttributes를 사용하자
+- RedirectAttributes
+  - RedirectAttributes를 사용하면 URL 인코딩도 해주고, pathVariable, 쿼리 파라미터까지 처리해준다.
+  - redirect:/basic/items/{itemId}
+    - pathVariable 바인딩 : {itemId}
+    - 나머지는 쿼리 파라미터로 처리: ?status=true
