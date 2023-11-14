@@ -1461,3 +1461,6 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
     - 웹 브라우저는 <를 HTML 태그의 시작으로 인식한다. 따라서 <를 태그의 시작이 아니라 문자로 표현할 수 있는 방법이 필요한데, 이것을 HTML 엔티티라 한다.
     - 이렇게 HTML에서 사용하는 특수 문자를 HTML 엔티티로 변경하는 것을 이스케이프(ESCAPE)라 한다.
     - 그리고 타임리프가 제공하는 th:text, [[...]]는 *기본적으로 이스케이프(ESCAPE)를 제공*한다.
+- 유틸리티 객체와 날짜
+  - 타임리프 유틸리티 객체 : https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#expression-utility-
+  - 유틸리티 객체 예시 : https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-
