@@ -1483,3 +1483,15 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
     - /hello : 절대 경로
     - hello : 상대 경로
     - 참고: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls
+- 리터럴
+  - 리터럴은 소스 코드상에 고정된 값을 말하는 용어이다.
+    - String a = "Hello", int a = 10 + 20
+  - 타임리프에서 문자 리터럴은 항상 '(작은 따옴표)로 감싸야 한다.
+  - 그러나 문자를 항상 '로 감싸는 것은 너무 귀찮은 일ㅇ디ㅏ. 공백없이 쭉 이어진다면 하나의 의미있는 토큰으로 인지해서 다음과 같이 작은 따옴표를 생략할 수 있다.
+    - 룰: A-Z, a-z, 0-9, [], ., -, _
+  - 오류
+    - `<span th:text="hello world!"></span>`
+    - 문자 리터럴은 원칙상 '로 감싸야 한다. 중간에 공백이 있어서 하나의 의미있는 토큰으로도 인식되지 않는다.
+  - 리터럴 대체(Literal substitutions)
+    - `<span th:text="|hello ${data}|">`
+    - 리터럴 대체 문법을 사용하면 마치 템플릿을 사용하는 것처럼 편리하다.
