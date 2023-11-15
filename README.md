@@ -1495,3 +1495,8 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
   - 리터럴 대체(Literal substitutions)
     - `<span th:text="|hello ${data}|">`
     - 리터럴 대체 문법을 사용하면 마치 템플릿을 사용하는 것처럼 편리하다.
+- 속성 설정
+  - th:* 속성을 지정하면 타임리프는 기존 속성을 th:*로 지정한 속성으로 대체한다. 기존 속성이 없다면 새로 만든다.
+    - HTML에서는 `<input type="checkbox" name="active" checked="false">` -> 이 경우에도 checked 속성이 있기 때문에 checked 처리가 되어 버린다.
+    - HTML에서 checked 속성은 checked 속성의 값과 상관없이 checked 라는 속성만 있어도 체크가 된다. 이런 부분이 true, false 값을 주로 사용하는 개발자 입장에서는 불편하다.
+    - 타임리프의 th:checked는 값이 false인 경우 checked 속성 자체를 제거한다. 그래서 편리하게 이용이 가능하다.
