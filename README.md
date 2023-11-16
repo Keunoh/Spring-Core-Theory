@@ -1500,3 +1500,8 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
     - HTML에서는 `<input type="checkbox" name="active" checked="false">` -> 이 경우에도 checked 속성이 있기 때문에 checked 처리가 되어 버린다.
     - HTML에서 checked 속성은 checked 속성의 값과 상관없이 checked 라는 속성만 있어도 체크가 된다. 이런 부분이 true, false 값을 주로 사용하는 개발자 입장에서는 불편하다.
     - 타임리프의 th:checked는 값이 false인 경우 checked 속성 자체를 제거한다. 그래서 편리하게 이용이 가능하다.
+- 템플릿 레이아웃
+  - 이전에는 일부 코드 조각을 가지고와서 사용했다면, 이번에는 개념을 더 확장해서 코드 조각을 레이아웃에 넘겨서 사용하는 방법에 대해서 알아보자.
+  - common_header(~{::title}, ~{::link}) 이 부분이 핵심이다.
+    - ::title은 현재 페이지의 title 태그들을 전달한다.
+    - ::link는 현재 페이지의 link 태그들을 전달한다.
