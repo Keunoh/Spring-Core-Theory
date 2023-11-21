@@ -1520,3 +1520,15 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
   - 스프링의 메시지, 국제화 기능의 편리한 통합
   - 스프링의 검증, 오류 처리 통합
   - 스프링의 변환 서비스 통합(ConversionSerivce)
+- 입력 폼 처리
+  - th:object : 커맨드 객체를 지정한다.
+    - th:object="${item}" : <form>에서 사용할 객체를 지정한다. 선택 변수 식을 적용할 수 있다.
+  - *{...} : 선택 변수 식이라고 한다. th:object 에서 선택한 객체에 접근한다.
+  - th:field
+    - HTML 태그의 id, name, value 속성을 자동으로 처리해준다.
+    - th:field="*{itemName}"
+      - *{itemName}는 선택 변수 식을 사용했는데, ${item.itemName}과 같다. 앞서 th:object로 item을 선택했기 때문에 선택 변수 식을 적용할 수 있다.
+      - th:field는 id, name, value 속성을 모두 자동으로 만들어 준다.
+        - id : th:field 에서 지정한 변수 이름과 같다. id="itemName"
+        - name : th:field 에서 지정한 변수 이름과 같다. name="itemName"
+        - value : th:field 에서 지정한 변수의 값을 사용한다. value=""
