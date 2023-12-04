@@ -1552,3 +1552,8 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
     - 이렇게 하려면 각각의 컨트롤러에서 model.addAttribute(...)을 사용해서 체크 박스를 구성하는 데이터를 반복해서 넣어주어야 한다.
     - @ModelAttribute는 이렇게 컨트롤러에 있는 별도의 메서드에 적용할 수 있다. [메서드 레벨에서 Annotation 추가]
     - 이렇게하면 해당 컨트롤러를 요청할 때 regions에서 반환한 값이 자동으로 모델(model)에 담기게 된다.
+
+### 메시지, 국제화
+- 스프링 메시지 소스 설정
+  - 스프링 부트를 사용하면 스프링 부트가 MessageSource를 자동으로 스프링 빈으로 등록한다.
+    - 스프링 부트 메시지 소스 기본 값 : spring.messages.basename=messages
