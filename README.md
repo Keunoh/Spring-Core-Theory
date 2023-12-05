@@ -1572,3 +1572,9 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
   - ObjectError - 글로벌 오류
   - 주의
     - BindingResult 파라미터의 위치는 @ModelAttribute Item item 다음에 와야한다.
+    - 즉, 검증할 대상 바로 다음에 와야한다.
+  - BindingResult가 있으면 @ModelAttribute에 데이터 바인딩 시 오류가 발생해도 컨트롤러가 호출된다.
+  - BindingResult에 검증 오류를 적용하는 3가지 방법
+    - @ModelAttribute의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError 생성해서 BindingResult에 넣어준다.
+    - 개발자가 직접 넣어준다.
+    - Validator 사용
