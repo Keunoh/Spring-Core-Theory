@@ -1567,3 +1567,8 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
     - API 방식을 사용하면 API 스펙을 잘 정의해서 검증 오류를 API 응답 결과에 잘 남겨주어야 함.
   - 검증 직접 처리
     ![image](https://github.com/keunoh/spring-core-theory/assets/96904103/55c7db98-0269-468b-981b-c6fbca29ae73)
+- BindingResult
+  - FieldError - 필드 오류
+  - ObjectError - 글로벌 오류
+  - 주의
+    - BindingResult 파라미터의 위치는 @ModelAttribute Item item 다음에 와야한다.
