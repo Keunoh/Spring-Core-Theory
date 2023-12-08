@@ -1650,3 +1650,9 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
 
 # 스프링 DB - 1
 # JDBC 이해
+- JDBC 표준 인터페이스
+  - JDBC(Java Database Connectivity)는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API다.
+
+![JDBC_INTERFACE](https://github.com/keunoh/spring-core-theory/assets/96904103/ea409a97-0ccd-4c76-98ce-e8ef29dcdd00)
+- 애플리케이션 로직은 이제 JDBC 표준 인터페이스에만 의존한다.
+- 개발자는 JDBC 표준 인터페이스 사용법만 학습하면 된다.
