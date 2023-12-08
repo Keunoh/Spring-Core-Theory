@@ -1647,3 +1647,6 @@ HTTP 메시지 컨버터를 사용하는 @RequestBody도 컨트롤러가 필요�
 발생하는 예외에 따라서 400, 404 등등 다른 상태코드로 처리하고 싶다.
 
 ![EXCEPTION_RESOLVER](https://github.com/keunoh/spring-core-theory/assets/96904103/359f0a65-653a-4e46-bf1d-8e7aea9cca27)
+
+# 스프링 DB - 1
+# JDBC 이해
