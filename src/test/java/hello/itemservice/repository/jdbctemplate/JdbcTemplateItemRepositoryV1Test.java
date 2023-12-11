@@ -1,10 +1,16 @@
 package hello.itemservice.repository.jdbctemplate;
 
 import hello.itemservice.domain.Item;
+import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemUpdateDto;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,7 +18,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JdbcTemplateItemRepositoryV1Test {
 
     @Autowired
-    private JdbcTemplateItemRepositoryV1 repository;
+    private ItemRepository repository;
+
+    @Autowired
+    PlatformTransactionManager transactionManager;
+
+    TransactionStatus status;
+
+    @BeforeEach
+    void beforeEach() {
+        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+    }
+
+    @AfterEach
+    void afterEach() {
+        transactionManager.rollback(status);
+    }
 
     @Test
     void save() {
