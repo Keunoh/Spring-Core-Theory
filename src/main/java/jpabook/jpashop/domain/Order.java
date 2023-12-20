@@ -28,7 +28,7 @@ public class Order {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member member; //주문 회원
 
     @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -37,7 +37,7 @@ public class Order {
     @JsonIgnore
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+    private Delivery delivery; //배송 정보
 
     private LocalDateTime orderDate; //주문시간
 
