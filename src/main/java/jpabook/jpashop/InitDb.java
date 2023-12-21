@@ -26,7 +26,7 @@ public class InitDb {
     @RequiredArgsConstructor
     static class InitService {
 
-        private EntityManager em;
+        private final EntityManager em;
 
         public void dbInit1() {
             Member member = createMember("userA", "서울", "1", "1111");
